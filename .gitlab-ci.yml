@@ -1,4 +1,9 @@
+stages:
+  - query
+  - build
+
 query:
+  stage: query
   image: alpine/curl
   before_script:
     - apk add jq
@@ -9,6 +14,7 @@ query:
       dotenv: build.env
 
 build:
+  stage: build
   image: docker:latest
   variables:
     DOCKER_TLS_CERTDIR: "/certs"
