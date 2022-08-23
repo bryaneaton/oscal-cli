@@ -8,7 +8,7 @@ query:
   before_script:
     - apk add jq
   script:
-    - echo "RELEASE=$(curl https://api.github.com/repos/usnistgov/oscal-cli/tags | jq '.[0].name')" >> build.env
+    - echo "RELEASE=$(curl https://api.github.com/repos/usnistgov/oscal-cli/tags | jq '.[0].name' | sed 's/\"//g')" >> build.env
   artifacts:
     reports:
       dotenv: build.env
